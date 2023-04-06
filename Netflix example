@@ -1,26 +1,32 @@
+--Show all titles with their directors, and release years
 SELECT * FROM "CharlotteChaze/BreakIntoTech"."netflix_people";
 SELECT people.director, titles.title, titles.release_year
     FROM "CharlotteChaze/BreakIntoTech"."netflix_people" people
     JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
     ON people.show_id=titles.show_id;
 
+--Show the most recent title added to the database
 SELECT max(date(date_added))
     FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
 
+--How many titles in the database are movies?
 SELECT Count(*) 
     FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
     WHERE type = 'Movie';
 
+--Put all titles in alphabetical order
 SELECT titles.title
     FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
     ORDER BY title asc;
 
+--Who was the director of the movie Bright Star?
 SELECT people.director, titles.title
     FROM "CharlotteChaze/BreakIntoTech"."netflix_people" people
     JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
     ON people.show_id=titles.show_id
     WHERE titles.title='Bright Star';
 
+--What is the oldest movies in the database?
 SELECT titles.title, titles.release_year
     FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
     WHERE type='Movie'
